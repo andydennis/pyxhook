@@ -44,22 +44,19 @@ from Xlib.ext import record
 from Xlib.protocol import rq
 
 
-#######################################################################
-# #######################START CLASS DEF###############################
-#######################################################################
-
 class HookManager(threading.Thread):
-    """ This is the main class. Instantiate it, and you can hand it KeyDown
-        and KeyUp (functions in your own code) which execute to parse the
-        pyxhookkeyevent class that is returned.
+    """ 
+    This is the main class. Instantiate it, and you can hand it KeyDown
+    and KeyUp (functions in your own code) which execute to parse the
+    pyxhookkeyevent class that is returned.
 
-        This simply takes these two values for now:
-        KeyDown : The function to execute when a key is pressed, if it
-                  returns anything. It hands the function an argument that
-                  is the pyxhookkeyevent class.
-        KeyUp   : The function to execute when a key is released, if it
-                  returns anything. It hands the function an argument that is
-                  the pyxhookkeyevent class.
+    This simply takes these two values for now:
+    KeyDown : The function to execute when a key is pressed, if it
+              returns anything. It hands the function an argument that
+              is the pyxhookkeyevent class.
+    KeyUp   : The function to execute when a key is released, if it
+              returns anything. It hands the function an argument that is
+              the pyxhookkeyevent class.
     """
 
     def __init__(self):
@@ -109,11 +106,6 @@ class HookManager(threading.Thread):
         if not self.record_dpy.has_extension("RECORD"):
             print("RECORD extension not found", file=sys.stderr)
             sys.exit(1)
-        # r = self.record_dpy.record_get_version(0, 0)
-        # print("RECORD extension version {major}.{minor}".format(
-        #     major=r.major_version,
-        #     minor=r.minor_version
-        # ))
 
         # Create a recording context; we only want key and mouse events
         self.ctx = self.record_dpy.record_create_context(
@@ -255,23 +247,6 @@ class HookManager(threading.Thread):
         return self.makemousehookevent(event)
 
     def buttonreleaseevent(self, event):
-        # if (self.clickx == self.rootx) and (self.clicky == self.rooty):
-        #     # print("ButtonClock {detail} x={s.rootx y={s.rooty}}".format(
-        #     #    detail=event.detail,
-        #     #    s=self,
-        #     # ))
-        #     if event.detail in (1, 2, 3):
-        #         self.captureclick()
-        # else:
-        #     pass
-        #     print("ButtonDown {detail} x={s.clickx} y={s.clicky}".format(
-        #         detail=event.detail,
-        #         s=self
-        #     ))
-        #     print("ButtonUp {detail} x={s.rootx} y={s.rooty}".format(
-        #         detail=event.detail,
-        #         s=self
-        #     ))
         return self.makemousehookevent(event)
 
     def mousemoveevent(self, event):
@@ -364,21 +339,22 @@ class HookManager(threading.Thread):
 
 
 class pyxhookkeyevent:
-    """ This is the class that is returned with each key event.f
-        It simply creates the variables below in the class.
+    """ 
+    This is the class that is returned with each key event.f
+    It simply creates the variables below in the class.
 
-        Window         : The handle of the window.
-        WindowName     : The name of the window.
-        WindowProcName : The backend process for the window.
-        Key            : The key pressed, shifted to the correct caps value.
-        Ascii          : An ascii representation of the key. It returns 0 if
-                         the ascii value is not between 31 and 256.
-        KeyID          : This is just False for now. Under windows, it is the
-                         Virtual Key Code, but that's a windows-only thing.
-        ScanCode       : Please don't use this. It differs for pretty much
-                         every type of keyboard. X11 abstracts this
-                         information anyway.
-        MessageName    : "key down", "key up".
+    Window         : The handle of the window.
+    WindowName     : The name of the window.
+    WindowProcName : The backend process for the window.
+    Key            : The key pressed, shifted to the correct caps value.
+    Ascii          : An ascii representation of the key. It returns 0 if
+                     the ascii value is not between 31 and 256.
+    KeyID          : This is just False for now. Under windows, it is the
+                     Virtual Key Code, but that's a windows-only thing.
+    ScanCode       : Please don't use this. It differs for pretty much
+                     every type of keyboard. X11 abstracts this
+                     information anyway.
+    MessageName    : "key down", "key up".
     """
 
     def __init__(
@@ -407,7 +383,8 @@ class pyxhookkeyevent:
 
 
 class pyxhookmouseevent:
-    """This is the class that is returned with each key event.f
+    """
+    This is the class that is returned with each key event.f
     It simply creates the variables below in the class.
 
         Window         : The handle of the window.
@@ -434,10 +411,6 @@ class pyxhookmouseevent:
             'MessageName: {s.MessageName}',
         )).format(s=self)
 
-
-#######################################################################
-# ########################END CLASS DEF################################
-#######################################################################
 
 if __name__ == '__main__':
     hm = HookManager()

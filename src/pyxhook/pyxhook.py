@@ -14,15 +14,15 @@ class HookManager(threading.Thread):
     """ 
     This is the main class. Instantiate it, and you can hand it KeyDown
     and KeyUp (functions in your own code) which execute to parse the
-    pyxhookkeyevent class that is returned.
+    PyxHookKeyEvent class that is returned.
 
     This simply takes these two values for now:
     KeyDown : The function to execute when a key is pressed, if it
               returns anything. It hands the function an argument that
-              is the pyxhookkeyevent class.
+              is the PyxHookKeyEvent class.
     KeyUp   : The function to execute when a key is released, if it
               returns anything. It hands the function an argument that is
-              the pyxhookkeyevent class.
+              the PyxHookKeyEvent class.
     """
 
     def __init__(self):
@@ -234,7 +234,7 @@ class HookManager(threading.Thread):
             MessageName = "key down"
         elif event.type == X.KeyRelease:
             MessageName = "key up"
-        return pyxhookkeyevent(
+        return PyxHookKeyEvent(
             storewm["handle"],
             storewm["name"],
             storewm["class"],
@@ -266,7 +266,7 @@ class HookManager(threading.Thread):
             MessageName = "{} up".format(MessageName)
         else:
             MessageName = "mouse moved"
-        return pyxhookmouseevent(
+        return PyxHookMouseEvent(
             storewm["handle"],
             storewm["name"],
             storewm["class"],
@@ -300,7 +300,7 @@ class HookManager(threading.Thread):
             return {"name": wmname, "class": wmclass[0], "handle": wmhandle}
 
 
-class pyxhookkeyevent:
+class PyxHookKeyEvent:
     """ 
     This is the class that is returned with each key event.f
     It simply creates the variables below in the class.
@@ -344,7 +344,7 @@ class pyxhookkeyevent:
         )).format(s=self)
 
 
-class pyxhookmouseevent:
+class PyxHookMouseEvent:
     """
     This is the class that is returned with each key event.f
     It simply creates the variables below in the class.

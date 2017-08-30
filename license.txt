@@ -34,4 +34,4 @@
 #    So if there are any bugs, they are probably my fault. :)
 #
 #    Modification in 2014, Jeff Hoogland
-#    Modification in 2017, Andy Dennis
+#    Modification in 2017, patamechanix

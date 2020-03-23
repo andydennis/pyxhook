@@ -19,7 +19,6 @@ Importing pyxhook
 Import relevant libraries.
 
 
-    >>> from __future__ import print_function
     >>> import pyxhook
     >>> import time
 

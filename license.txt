@@ -34,4 +34,5 @@
 #    So if there are any bugs, they are probably my fault. :)
 #
 #    Modification in 2014, Jeff Hoogland
-#    Modification in 2017, patamechanix
+#    Modification in 2017, patamechanix & rpigu-i
+#    Modification in 2020, rpigu-i

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import sys
 import re
 import time
@@ -160,7 +158,6 @@ class HookManager(threading.Thread):
                 hookevent = self.mousemoveevent(event)
                 self.MouseMovement(hookevent)
 
-        # print("processing events...", event.type)
 
     def keypressevent(self, event):
         matchto = self.lookup_keysym(
